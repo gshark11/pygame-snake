@@ -82,9 +82,9 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
-    if snake[0][0] >= GRID_WIDTH - 0 or snake[0][0] <= 0:
+    if snake[0][0] >= (GRID_WIDTH) or snake[0][0] < 0:
         return True
-    if snake[0][1] >= GRID_HEIGHT - 0 or snake[0][1] <= 0:
+    if snake[0][1] >= (GRID_HEIGHT) or snake[0][1] < 0:
         return True
     return False
 
@@ -105,22 +105,22 @@ def get_score(snake):
     The user earns 10 points for each of the segments in the snake.
     For example, if the snake has 25 segments, the score is 250.
     """
-    return 0
+    return len(snake)* 10
 
 def get_game_over_text(score):
     """Returns the text to draw on the screen after the game is over.
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over.'
+    return 'Game Over.' +' Score:' + str(score)
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
     snake - list of 2-tuples representing the positions of each snake segment
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
-    """
-    return 5
+    """  
+    return 5 *(len(snake)/10)
 
 def move_snake(snake, direction, food):
     """Moves the snake one space in the direction specified and returns whether food was eaten.
